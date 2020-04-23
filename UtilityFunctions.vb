@@ -211,15 +211,27 @@ Module UtilityFunctions
         SwinGame.DrawFramerate(675, 585)
     End Sub
 
+    ''' <summary>
+    ''' Adds explosion animation at grid location
+    ''' </summary>
+
     Public Sub AddExplosion(ByVal row As Integer, ByVal col As Integer)
         AddAnimation(row, col, "Splash")
     End Sub
+
+    ''' <summary>
+    ''' Adds splash animation at grid location
+    ''' </summary>
 
     Public Sub AddSplash(ByVal row As Integer, ByVal col As Integer)
         AddAnimation(row, col, "Splash")
     End Sub
 
     Private _Animations As New List(Of Sprite)()
+
+    ''' <summary>
+    ''' Adds animation with game sprites
+    ''' </summary>
 
     Private Sub AddAnimation(ByVal row As Integer, ByVal col As Integer, ByVal image As String)
         Dim s As Sprite
@@ -239,6 +251,10 @@ Module UtilityFunctions
         _Animations.Add(s)
     End Sub
 
+    ''' <summary>
+    ''' Updates each frame of game sprites then release the sprite resources
+    ''' </summary>
+
     Public Sub UpdateAnimations()
         Dim ended As New List(Of Sprite)()
         For Each s As Sprite In _Animations
@@ -254,11 +270,19 @@ Module UtilityFunctions
         Next
     End Sub
 
+    ''' <summary>
+    ''' Displays each game sprite
+    ''' </summary>
+
     Public Sub DrawAnimations()
         For Each s As Sprite In _Animations
             SwinGame.DrawSprite(s)
         Next
     End Sub
+
+    ''' <summary>
+    ''' Create animation by displaying each frame of sprites
+    ''' </summary>
 
     Public Sub DrawAnimationSequence()
         Dim i as Integer

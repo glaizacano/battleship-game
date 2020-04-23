@@ -1,7 +1,16 @@
 Imports SwinGameSDK
 Imports System.Collections.Generic
 
+''' <summary>
+''' The GameResources is responsible for managing game resources 
+''' such as fonts, images, sounds and music, loading and the unloading 
+''' of these resources
+''' </summary>
 Public Module GameResources
+
+    ''' <summary>
+    ''' Load Font Resources
+    ''' </summary>
 
     Private Sub LoadFonts()
         NewFont("ArialLarge", "arial.ttf", 80)
@@ -9,6 +18,10 @@ Public Module GameResources
         NewFont("CourierSmall", "cour.ttf", 8)
         NewFont("Menu", "ffaccess.ttf", 8)
     End Sub
+
+    ''' <summary>
+    ''' Load Image Resources
+    ''' </summary>
 
     Private Sub LoadImages()
         'Backgrounds
@@ -36,6 +49,10 @@ For i  = 1 To 5
 
     End Sub
 
+    ''' <summary>
+    ''' Load Sound Resources
+    ''' </summary>
+
     Private Sub LoadSounds()
         NewSound("Error", "error.wav")
         NewSound("Hit", "hit.wav")
@@ -45,6 +62,10 @@ For i  = 1 To 5
         NewSound("Winner", "winner.wav")
         NewSound("Lose", "lose.wav")
     End Sub
+
+    ''' <summary>
+    ''' Loads Background Music
+    ''' </summary>
 
     Private Sub LoadMusic()
         NewMusic("Background", "horrordrone.mp3")
@@ -139,6 +160,10 @@ For i  = 1 To 5
         EndLoadingScreen(width, height)
     End Sub
 
+    ''' <summary>
+    ''' Gets the loading screen images loaded in Resources
+    ''' </summary>
+
     Private Sub ShowLoadingScreen()
         _Background = SwinGame.LoadBitmap(SwinGame.PathToResource("SplashBack.png", ResourceKind.BitmapResource))
         SwinGame.DrawBitmap(_Background, 0, 0)
@@ -154,6 +179,10 @@ For i  = 1 To 5
 
         PlaySwinGameIntro()
     End Sub
+
+    ''' <summary>
+    ''' Plays the SwinGame introductory animation
+    ''' </summary>
 
     Private Sub PlaySwinGameIntro()
         Const ANI_CELL_COUNT As Integer = 11
@@ -172,6 +201,10 @@ For i  = 1 To 5
         SwinGame.Delay(1500)
 
     End Sub
+
+    ''' <summary>
+    ''' Display strings and mesasge boxes on the screen
+    ''' </summary>
 
     Private Sub ShowMessage(ByVal message As String, ByVal number As Integer)
         Const TX As Integer = 310, TY As Integer = 493, TW As Integer = 200, TH As Integer = 25, STEPS As Integer = 5, BG_X As Integer = 279, BG_Y As Integer = 453
@@ -195,6 +228,10 @@ For i  = 1 To 5
         SwinGame.ProcessEvents()
     End Sub
 
+    ''' <summary>
+    ''' Releases resources after loading screen
+    ''' </summary>
+
     Private Sub EndLoadingScreen(ByVal width As Integer, ByVal height As Integer)
         SwinGame.ProcessEvents()
         SwinGame.Delay(500)
@@ -209,29 +246,55 @@ For i  = 1 To 5
         SwinGame.ChangeScreenSize(width, height)
     End Sub
 
+    ''' <summary>
+    ''' Adds font resource from given filename
+    ''' </summary>
+
     Private Sub NewFont(ByVal fontName As String, ByVal filename As String, ByVal size As Integer)
         _Fonts.Add(fontName, SwinGame.LoadFont(SwinGame.PathToResource(filename, ResourceKind.FontResource), size))
     End Sub
+
+    ''' <summary>
+    ''' Adds image resource from given filename
+    ''' </summary>
 
     Private Sub NewImage(ByVal imageName As String, ByVal filename As String)
         _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(filename, ResourceKind.BitmapResource)))
     End Sub
 
+    ''' Redundant code
+
     Private Sub NewTransparentColorImage(ByVal imageName As String, ByVal fileName As String, ByVal transColor As Color)
         _Images.Add(imageName, SwinGame.LoadBitmap(SwinGame.PathToResource(fileName, ResourceKind.BitmapResource)))
     End Sub
+
+    ''' <summary>
+    ''' Adds image resource from given filename and creates transparent color image
+    ''' </summary>
 
     Private Sub NewTransparentColourImage(ByVal imageName As String, ByVal fileName As String, ByVal transColor As Color)
         NewTransparentColorImage(imageName, fileName, transColor)
     End Sub
 
+    ''' <summary>
+    ''' Adds sound resource from given filename
+    ''' </summary>
+
     Private Sub NewSound(ByVal soundName As String, ByVal filename As String)
         _Sounds.Add(soundName, Audio.LoadSoundEffect(SwinGame.PathToResource(filename, ResourceKind.SoundResource)))
     End Sub
 
+    ''' <summary>
+    ''' Adds music resource from given filename
+    ''' </summary>
+
     Private Sub NewMusic(ByVal musicName As String, ByVal filename As String)
         _Music.Add(musicName, Audio.LoadMusic(SwinGame.PathToResource(filename, ResourceKind.SoundResource)))
     End Sub
+
+    ''' <summary>
+    ''' Release font resources
+    ''' </summary>
 
     Private Sub FreeFonts()
         Dim obj As Font
@@ -240,12 +303,20 @@ For i  = 1 To 5
         Next
     End Sub
 
+    ''' <summary>
+    ''' Release image resources
+    ''' </summary>
+
     Private Sub FreeImages()
         Dim obj As Bitmap
         For Each obj In _Images.Values
             SwinGame.FreeBitmap(obj)
         Next
     End Sub
+
+    ''' <summary>
+    ''' Release sound resources
+    ''' </summary>
 
     Private Sub FreeSounds()
         Dim obj As SoundEffect
@@ -254,12 +325,20 @@ For i  = 1 To 5
         Next
     End Sub
 
+    ''' <summary>
+    ''' Release music resources
+    ''' </summary>
+
     Private Sub FreeMusic()
         Dim obj As Music
         For Each obj In _Music.Values
             Audio.FreeMusic(obj)
         Next
     End Sub
+
+    ''' <summary>
+    ''' Release all font, image, music and sound resources
+    ''' </summary>
 
     Public Sub FreeResources()
         FreeFonts()

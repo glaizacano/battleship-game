@@ -109,6 +109,10 @@ Public Module GameController
         SwinGame.RefreshScreen()
     End Sub
 
+    ''' <summary>
+    ''' Displays the animation and sound effect when a target is hit
+    ''' </summary>
+
     Private Sub PlayHitSequence(ByVal row As Integer, ByVal column As Integer, ByVal showAnimation As Boolean)
         If showAnimation Then
             AddExplosion(row, column)
@@ -118,6 +122,10 @@ Public Module GameController
 
         DrawAnimationSequence()
     End Sub
+
+    ''' <summary>
+    ''' Displays the animation and sound effect when a target is missed
+    ''' </summary>
 
     Private Sub PlayMissSequence(ByVal row As Integer, ByVal column As Integer, ByVal showAnimation As Boolean)
         If showAnimation Then
