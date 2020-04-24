@@ -1,0 +1,3 @@
+C:\Users\pm186\OneDrive - Swinburne University\2020 Development Project 1\battleship-game\obj\x86\Debug-Windows\battleship-game.csprojAssemblyReference.cache
+C:\Users\pm186\OneDrive - Swinburne University\2020 Development Project 1\battleship-game\obj\x86\Debug-Windows\MyGame.exe
+C:\Users\pm186\OneDrive - Swinburne University\2020 Development Project 1\battleship-game\obj\x86\Debug-Windows\MyGame.pdb
